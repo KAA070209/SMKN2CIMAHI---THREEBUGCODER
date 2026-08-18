@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from app.core.config import settings
 from app.core.static_files import FallbackStaticFiles
-from app.api.v1.endpoints import auth, checkout, category, admin, home, seller, user, product, order, wishlist, cart, notification, payment, stores, voucher, review, recipe
+from app.api.v1.endpoints import auth, checkout, category, admin, search, seller, user, product, order, wishlist, cart, notification, payment, stores, voucher, review, recipe
 
 logger = logging.getLogger("uvicorn.error")
 
@@ -65,7 +65,8 @@ app.add_middleware(
 
 app.include_router(auth.router,        prefix="/api/v1/auth",        tags=["Auth"])
 app.include_router(checkout.router,    prefix="/api/v1/checkout",    tags=["Checkout"])
-app.include_router(home.router,        prefix="/api/v1/home",        tags=["Home"])
+app.include_router(search.router,        prefix="/api/v1/home",        tags=["Home"])
+app.include_router(search.router,        prefix="/search",            tags=["Search"])
 app.include_router(category.router,    prefix="/api/v1/categories",  tags=["Categories"])
 app.include_router(seller.router,      prefix="/api/v1/seller",      tags=["Seller"])
 app.include_router(user.router,        prefix="/api/v1/user",        tags=["User"])
